@@ -1,0 +1,23 @@
+.campspot {
+  text-align: center;
+}
+
+.campspot-logo {
+  height: 50px;
+  margin-left: 50px;
+}
+
+.campspot-header {
+  background-color: #34485d;
+  height: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.campspot-title {
+  font-size: 1.5em;
+}
+
+.campspot-intro {
+  font-size: large;
+}
