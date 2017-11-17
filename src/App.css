@@ -21,3 +21,37 @@
 .campspot-intro {
   font-size: large;
 }
+
+.campsite-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.campsite-name {
+    padding: 15px;
+    font-size: 15px;
+    border-right: 1px solid black;
+    width: 20%;
+    position: relative;
+}
+
+.campsite-reservations {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.reservation-dates {
+    position: relative;
+    height: 50px;
+    width: 20vw;
+    background: lightblue;
+    border: 1px solid black;
+    text-align: center;
+}
