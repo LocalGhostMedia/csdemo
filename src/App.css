@@ -50,8 +50,12 @@
 .reservation-dates {
     position: relative;
     height: 50px;
-    width: 20vw;
+    width: 15vw;
     background: lightblue;
     border: 1px solid black;
     text-align: center;
+}
+
+.search-query-block {
+    background: green;
 }
