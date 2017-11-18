@@ -23,9 +23,6 @@
 
 .campsite-container {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    position: relative;
     height: 50px;
     width: 100%;
     border: 1px solid #34485d;

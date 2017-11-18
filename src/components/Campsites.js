@@ -40,6 +40,7 @@ class Campsites extends Component {
                         // End gap is gap between search endDate and reservation startDate
                         let endGap = searchEndtoResStart;
 
+                        // Calculate if reservation is valid by determing if there are any overlap or matching of gapSize
                         let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
                         let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
                         let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
@@ -51,6 +52,7 @@ class Campsites extends Component {
                     return isReservationValid;
             });
 
+            // If a reservation conflicted, don't inject the search reservation into that site
             if (!(validReservations.length < campsiteReservations.length)) {
                 campsiteReservations.push({
                     startDate: this.props.search.startDate,
@@ -59,7 +61,7 @@ class Campsites extends Component {
                     searchQuery: true
                 });
 
-                // Create function to sort query in right place of reservations
+                // Create function to sort reservations by start date
                 function sortByStartDate(a,b) {
                     if (a.startDate < b.startDate) {
                         return -1;
