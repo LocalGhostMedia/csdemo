@@ -4,15 +4,12 @@ import Moment from 'moment';
 
 class Campsites extends Component {
 
-    componentDidMount() {
-    }
-
     render() {
         // Convert search query params to moments
         let searchStartDate = Moment(this.props.search.startDate);
         let searchEndDate = Moment(this.props.search.endDate);
         let searchDuration = Moment.duration(searchEndDate.diff(searchStartDate)).asDays();
-        debugger;
+
         // Get all gap rule values together
         let gapRules = this.props.gapRules;
 
@@ -40,7 +37,7 @@ class Campsites extends Component {
                         // End gap is gap between search endDate and reservation startDate
                         let endGap = searchEndtoResStart;
 
-                        // Calculate if reservation is valid by determing if there are any overlap or matching of gapSize
+                        // Calculate if reservation is valid by determing if there is any overlap or matching of incorrect gapSize
                         let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
                         let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
                         let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
@@ -52,8 +49,9 @@ class Campsites extends Component {
                     return isReservationValid;
             });
 
-            // If a reservation conflicted, don't inject the search reservation into that site
-            if (!(validReservations.length < campsiteReservations.length)) {
+            // If a reservation conflicted, don't show campsite
+            let isCampsiteAvaiable = !(validReservations.length < campsiteReservations.length);
+            if (isCampsiteAvaiable) {
                 campsiteReservations.push({
                     startDate: this.props.search.startDate,
                     endDate: this.props.search.endDate,
@@ -73,6 +71,8 @@ class Campsites extends Component {
                 }
 
                 campsiteReservations.sort(sortByStartDate);
+            } else {
+                return [];
             }
 
             // Create DOM structure using Reservations component

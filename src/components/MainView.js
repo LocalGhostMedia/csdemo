@@ -5,8 +5,8 @@ import CampData from '../data/test-case.json';
 
 class MainView extends Component {
     constructor() {
-        // Create state of application from json data
         super();
+        // Create state of application from json data
         this.state = {
             campsites: CampData.campsites,
             gapRules: CampData.gapRules,

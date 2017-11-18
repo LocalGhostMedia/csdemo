@@ -25,13 +25,14 @@
     display: flex;
     height: 50px;
     width: 100%;
-    border: 1px solid #34485d;
+    border-right: 0;
+    border-bottom: 1px #34485d solid;
 }
 
 .campsite-name {
     padding: 15px;
     font-size: 15px;
-    border-right: 1px solid #1ab063;
+    border-right: 1px #1ab063 solid;
     width: 20%;
     position: relative;
 }
