@@ -8,7 +8,9 @@ class Campsites extends Component {
         // Convert search query params to moments
         let searchStartDate = Moment(this.props.search.startDate);
         let searchEndDate = Moment(this.props.search.endDate);
-        let searchDuration = Moment.duration(searchEndDate.diff(searchStartDate)).asDays();
+
+        // Add one to duration since we're calculating gap and not time
+        let searchDuration = Moment.duration(searchEndDate.diff(searchStartDate)).asDays()+1;
 
         // Get all gap rule values together
         let gapRules = this.props.gapRules;
@@ -23,14 +25,15 @@ class Campsites extends Component {
 
                 for (let rule of gapRules) {
                     // Start gap is gap between reservation endDate and start of search startDate
-                    let startGap = resEndToSearchStart;
+                    // Subtract one day since 6th to 7th is 0 gap and not 1
+                    let startGap = resEndToSearchStart -1;
 
                     // End gap is gap between search endDate and reservation startDate
-                    let endGap = searchEndtoResStart;
+                    let endGap = searchEndtoResStart -1;
 
                     // Calculate if reservation is valid by determing if there is any overlap or matching of incorrect gapSize
                     let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
-                    let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
+                    let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration);
                     let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
 
                     if (isStartGapInvalid || isEndGapInvalid || isGapSize) {

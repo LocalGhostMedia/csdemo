@@ -45,33 +45,6 @@ The expected output of the sample file was:
    "Bear Grylls Cozy Cave"
    "Wyatt Earp Corral"
 ```
-This is incorrect.
-
-Example why:
-```
-"Wyatt Earp Corral"
-Start date for next reservation: June 12th
-End date for Search Query:  June 10th
-This creates a 2 day gap. That is invalid based on gapSize parameters.
-```
-
-Correct output:
-```
-   "Jonny Appleseed Log Cabin"
-   "Teddy Roosevelt Tent Site"
-   "Bear Grylls Cozy Cave"
-```
-Output explanation:
-```
-"Jonny Appleseed Log Cabin"
-Start date for Search Query: June 7th
-End date for previous reservation:    June 6th
-This creates a 1 day gap. That is valid based on gapSize parameters.
-
-End date for Search Query:   June 10th
-Start date for next reservation:  June 14th
-This creates a 4 day gap. That is valid based on gapSize parameters.
-```
 
 ## Authors
 

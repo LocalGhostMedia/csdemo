@@ -51,15 +51,15 @@ describe(Campsites, () => {
     });
 
     it('determines all reservations as valid', () => {
-        let updatedReservations = [
-            {"campsiteId": 1, "startDate": "2016-06-01", "endDate": "2016-06-04"},
+        let testReservations = [
+            {"campsiteId": 1, "startDate": "2016-06-01", "endDate": "2016-06-03"},
             {"campsiteId": 1, "startDate": "2016-06-11", "endDate": "2016-06-14"}
         ]
         let component = shallow(
             <Campsites
                 campsites={sampleCampSiteData.campsites}
                 gapRules={sampleCampSiteData.gapRules}
-                reservations={updatedReservations}
+                reservations={testReservations}
                 search={sampleCampSiteData.search}
                 />
         );

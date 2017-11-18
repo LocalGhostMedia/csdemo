@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`class MainView extends _react.Component {
+    constructor() {
+        super();
+        // Create state of application from json data
+        this.state = {
+            campsites: _testCase2.default.campsites,
+            gapRules: _testCase2.default.gapRules,
+            reservations: _testCase2.default.reservations,
+            search: _testCase2.default.search,
+            dateFormat: 'MMM Do' };
+
+    }
+    // Create main application structure
+    render() {
+        return (
+            _react2.default.createElement('div', { __source: { fileName: _jsxFileName, lineNumber: 21 }, __self: this },
+                _react2.default.createElement('div', { className: 'search-query', __source: { fileName: _jsxFileName, lineNumber: 22 }, __self: this },
+                    _react2.default.createElement('span', { __source: { fileName: _jsxFileName, lineNumber: 23 }, __self: this }, 'Search: ',
+                        (0, _moment2.default)(this.state.search.startDate).format(this.state.dateFormat), ' - ', (0, _moment2.default)(this.state.search.endDate).format(this.state.dateFormat))),
+
+
+                _react2.default.createElement('div', { className: 'campgrounds-container', __source: { fileName: _jsxFileName, lineNumber: 27 }, __self: this },
+                    _react2.default.createElement(_Campsites2.default, {
+                        campsites: this.state.campsites,
+                        dateFormat: this.state.dateFormat,
+                        gapRules: this.state.gapRules,
+                        reservations: this.state.reservations,
+                        search: this.state.search, __source: { fileName: _jsxFileName, lineNumber: 28 }, __self: this }))));
+
+
+
+
+    }} renders and matches snapshot 1`] = `
+<div>
+  <div
+    className="search-query"
+  >
+    <span>
+      Search: 
+      Jun 7th
+       - 
+      Jun 10th
+    </span>
+  </div>
+  <div
+    className="campgrounds-container"
+  >
+    <div
+      className="campsites-container"
+    >
+      <div
+        className="campsite-container"
+      >
+        <div
+          className="campsite-name"
+        >
+          <span>
+            Daniel Boone Bungalow
+          </span>
+        </div>
+        <div
+          className="campsite-reservations"
+        >
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 3rd
+               -
+              Jun 6th
+            </span>
+          </div>
+          <div
+            className="reservation-dates search-query-reservation"
+          >
+            <span>
+              Jun 7th
+               -
+              Jun 10th
+            </span>
+          </div>
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 12th
+               -
+              Jun 14th
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="campsite-container"
+      >
+        <div
+          className="campsite-name"
+        >
+          <span>
+            Teddy Roosevelt Tent Site
+          </span>
+        </div>
+        <div
+          className="campsite-reservations"
+        >
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 4th
+               -
+              Jun 6th
+            </span>
+          </div>
+          <div
+            className="reservation-dates search-query-reservation"
+          >
+            <span>
+              Jun 7th
+               -
+              Jun 10th
+            </span>
+          </div>
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 11th
+               -
+              Jun 12th
+            </span>
+          </div>
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 16th
+               -
+              Jun 16th
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="campsite-container"
+      >
+        <div
+          className="campsite-name"
+        >
+          <span>
+            Bear Grylls Cozy Cave
+          </span>
+        </div>
+        <div
+          className="campsite-reservations"
+        >
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 1st
+               -
+              Jun 2nd
+            </span>
+          </div>
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 5th
+               -
+              Jun 6th
+            </span>
+          </div>
+          <div
+            className="reservation-dates search-query-reservation"
+          >
+            <span>
+              Jun 7th
+               -
+              Jun 10th
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="campsite-container"
+      >
+        <div
+          className="campsite-name"
+        >
+          <span>
+            Wyatt Earp Corral
+          </span>
+        </div>
+        <div
+          className="campsite-reservations"
+        >
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 3rd
+               -
+              Jun 5th
+            </span>
+          </div>
+          <div
+            className="reservation-dates search-query-reservation"
+          >
+            <span>
+              Jun 7th
+               -
+              Jun 10th
+            </span>
+          </div>
+          <div
+            className="reservation-dates "
+          >
+            <span>
+              Jun 12th
+               -
+              Jun 16th
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
