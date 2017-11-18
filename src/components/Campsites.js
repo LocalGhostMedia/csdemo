@@ -4,7 +4,7 @@ import Moment from 'moment';
 
 class Campsites extends Component {
 
-    render() {
+    findReservationConflicts(campsiteReservations) {
         // Convert search query params to moments
         let searchStartDate = Moment(this.props.search.startDate);
         let searchEndDate = Moment(this.props.search.endDate);
@@ -13,6 +13,35 @@ class Campsites extends Component {
         // Get all gap rule values together
         let gapRules = this.props.gapRules;
 
+        return campsiteReservations
+            .filter(reservation => {
+                let resStartDate = Moment(reservation.startDate);
+                let resEndDate = Moment(reservation.endDate);
+                let resEndToSearchStart = Moment.duration(searchStartDate.diff(resEndDate)).asDays();
+                let searchEndtoResStart = Moment.duration(resStartDate.diff(searchEndDate)).asDays();
+                let isReservationValid = true;
+
+                for (let rule of gapRules) {
+                    // Start gap is gap between reservation endDate and start of search startDate
+                    let startGap = resEndToSearchStart;
+
+                    // End gap is gap between search endDate and reservation startDate
+                    let endGap = searchEndtoResStart;
+
+                    // Calculate if reservation is valid by determing if there is any overlap or matching of incorrect gapSize
+                    let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
+                    let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
+                    let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
+
+                    if (isStartGapInvalid || isEndGapInvalid || isGapSize) {
+                        isReservationValid = false;
+                    }
+                }
+                return isReservationValid;
+        });
+    }
+
+    render() {
         // Map all campsites to return HTML structure and create reservation components.
         let campsites = this.props.campsites
             .map(campsite => {
@@ -21,33 +50,8 @@ class Campsites extends Component {
             let campsiteReservations = this.props.reservations
                 .filter(reservation => reservation.campsiteId === campsite.id);
 
-            // Find all valid campsite reservations for each campsite based on search and gapRules
-            let validReservations = campsiteReservations
-                .filter(reservation => {
-                    let resStartDate = Moment(reservation.startDate);
-                    let resEndDate = Moment(reservation.endDate);
-                    let resEndToSearchStart = Moment.duration(searchStartDate.diff(resEndDate)).asDays();
-                    let searchEndtoResStart = Moment.duration(resStartDate.diff(searchEndDate)).asDays();
-                    let isReservationValid = true;
-
-                    for (let rule of gapRules) {
-                        // Start gap is gap between reservation endDate and start of search startDate
-                        let startGap = resEndToSearchStart;
-
-                        // End gap is gap between search endDate and reservation startDate
-                        let endGap = searchEndtoResStart;
-
-                        // Calculate if reservation is valid by determing if there is any overlap or matching of incorrect gapSize
-                        let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
-                        let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
-                        let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
-
-                        if (isStartGapInvalid || isEndGapInvalid || isGapSize) {
-                            isReservationValid = false;
-                        }
-                    }
-                    return isReservationValid;
-            });
+            // Find if there are reservation conflicts at campsite based on search and gapRules
+            let validReservations = this.findReservationConflicts(campsiteReservations);
 
             // If a reservation conflicted, don't show campsite
             let isCampsiteAvaiable = !(validReservations.length < campsiteReservations.length);

@@ -5,6 +5,7 @@ class Reservations extends Component {
     render() {
         let reservations = this.props.reservations
             .map(reservation => {
+
                 // Create guid for repeat elements
                 let guid = Math.random() * 10000000;
                 return (
