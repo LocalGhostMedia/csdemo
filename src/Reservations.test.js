@@ -6,10 +6,11 @@ import Reservations from './components/Reservations';
 
 
 describe(Reservations, () => {
+    // Wrap dates in  new Date() for Moment to interpret test with no warning.
     const reservations = [
-        {"campsiteId": 1, "startDate": "2016-06-01", "endDate": "2016-06-04"},
-        {"campsiteId": 1, "startDate": "2016-06-11", "endDate": "2016-06-14"},
-        {"campsiteId": 1, "startDate": "2016-06-7", "endDate": "2016-06-10", "searchQuery": true},
+        {"campsiteId": 1, "startDate": new Date("2016-06-01"), "endDate": new Date("2016-06-03")},
+        {"campsiteId": 1, "startDate": new Date("2016-06-11"), "endDate": new Date("2016-06-14")},
+        {"campsiteId": 1, "startDate": new Date("2016-06-7"), "endDate": new Date("2016-06-10"), "searchQuery": true},
     ]
     let component = shallow(
         <Reservations
@@ -26,6 +27,6 @@ describe(Reservations, () => {
 
     it('asserts that dateFormat is passed and a string', () => {
         const dateFormat = component.instance().props.dateFormat;
-        expect(dateFormat).toBeTruthy();
+        expect(typeof dateFormat).toBe('string');
     });
 });
