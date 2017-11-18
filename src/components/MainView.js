@@ -15,6 +15,7 @@ class MainView extends Component {
             dateFormat: 'MMM Do'
         }
     }
+    // Create main application structure
     render() {
         return (
             <div>

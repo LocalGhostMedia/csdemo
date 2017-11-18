@@ -53,7 +53,7 @@ class Campsites extends Component {
             // Find if there are reservation conflicts at campsite based on search and gapRules
             let validReservations = this.findReservationConflicts(campsiteReservations);
 
-            // If a reservation conflicted, don't show campsite
+            // If a reservation conflicted, don't show campsite, return empty array
             let isCampsiteAvaiable = !(validReservations.length < campsiteReservations.length);
             if (isCampsiteAvaiable) {
                 campsiteReservations.push({

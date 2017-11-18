@@ -18,7 +18,7 @@ class Reservations extends Component {
                 );
             });
 
-
+        // Render all reservations that were just mapped
         return (
             <div className="campsite-reservations" >
                 {reservations}
