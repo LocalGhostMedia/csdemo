@@ -5,6 +5,7 @@ import CampData from '../data/test-case.json';
 
 class MainView extends Component {
     constructor() {
+        // Create state of application from json data
         super();
         this.state = {
             campsites: CampData.campsites,
@@ -14,12 +15,13 @@ class MainView extends Component {
             dateFormat: 'MMM Do'
         }
     }
-
     render() {
         return (
             <div>
                 <div className="search-query">
-                    Search Query: {Moment(this.state.search.startDate).format(this.state.dateFormat)} - {Moment(this.state.search.endDate).format(this.state.dateFormat)}
+                    <span>
+                        Search: {Moment(this.state.search.startDate).format(this.state.dateFormat)} - {Moment(this.state.search.endDate).format(this.state.dateFormat)}
+                    </span>
                 </div>
                 <div className="campgrounds-container">
                     <Campsites

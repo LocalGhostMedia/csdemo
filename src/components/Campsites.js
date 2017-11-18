@@ -14,7 +14,7 @@ class Campsites extends Component {
         let searchDuration = Moment.duration(searchEndDate.diff(searchStartDate)).asDays();
         debugger;
         // Get all gap rule values together
-        let gapRules = Object.values(this.props.gapRules);
+        let gapRules = this.props.gapRules;
 
         // Map all campsites to return HTML structure and create reservation components.
         let campsites = this.props.campsites
@@ -29,24 +29,29 @@ class Campsites extends Component {
                 .filter(reservation => {
                     let resStartDate = Moment(reservation.startDate);
                     let resEndDate = Moment(reservation.endDate);
-                    let resDuration = Moment.duration(resEndDate.diff(resStartDate)).asDays();
                     let resEndToSearchStart = Moment.duration(searchStartDate.diff(resEndDate)).asDays();
                     let searchEndtoResStart = Moment.duration(resStartDate.diff(searchEndDate)).asDays();
                     let isReservationValid = true;
 
                     for (let rule of gapRules) {
+                        // Start gap is gap between reservation endDate and start of search startDate
                         let startGap = resEndToSearchStart;
+
+                        // End gap is gap between search endDate and reservation startDate
                         let endGap = searchEndtoResStart;
-                        if ((startGap < 0 && Math.abs(startGap) < searchDuration) || startGap === rule.gapSize || (endGap < 0 && Math.abs(endGap) < searchDuration) || endGap === rule.gapSize) {
+
+                        let isStartGapInvalid = (startGap < 0 && Math.abs(startGap) < searchDuration);
+                        let isEndGapInvalid = (endGap < 0 && Math.abs(endGap) < searchDuration)
+                        let isGapSize = (startGap === rule.gapSize || endGap === rule.gapSize);
+
+                        if (isStartGapInvalid || isEndGapInvalid || isGapSize) {
                             isReservationValid = false;
                         }
                     }
                     return isReservationValid;
             });
 
-            if (validReservations.length < campsiteReservations.length) {
-                return;
-            } else {
+            if (!(validReservations.length < campsiteReservations.length)) {
                 campsiteReservations.push({
                     startDate: this.props.search.startDate,
                     endDate: this.props.search.endDate,

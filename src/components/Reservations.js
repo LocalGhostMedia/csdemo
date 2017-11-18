@@ -6,7 +6,7 @@ class Reservations extends Component {
         let reservations = this.props.reservations
             .map(reservation => {
                 return (
-                    <div className={"reservation-dates " + (reservation.searchQuery ? 'search-query-block' : '')} >
+                    <div className={"reservation-dates " + (reservation.searchQuery ? 'search-query-reservation' : '')} >
                         <span>
                             {Moment(reservation.startDate).format(this.props.dateFormat)} -
                             {Moment(reservation.endDate).format(this.props.dateFormat)}

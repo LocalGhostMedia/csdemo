@@ -4,7 +4,6 @@
 
 .campspot-logo {
   height: 50px;
-  margin-left: 50px;
 }
 
 .campspot-header {
@@ -29,13 +28,13 @@
     position: relative;
     height: 50px;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #34485d;
 }
 
 .campsite-name {
     padding: 15px;
     font-size: 15px;
-    border-right: 1px solid black;
+    border-right: 1px solid #1ab063;
     width: 20%;
     position: relative;
 }
@@ -48,14 +47,30 @@
 }
 
 .reservation-dates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 50px;
     width: 15vw;
-    background: lightblue;
-    border: 1px solid black;
+    background: #f4f4f4;
     text-align: center;
+    opacity: .6;
+    transition: opacity 250ms ease;
+}
+.reservation-dates:hover {
+    opacity: 1;
 }
 
-.search-query-block {
-    background: green;
+.search-query {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    background: #23313f;
+    color: white;
+}
+
+.search-query-reservation {
+    opacity: 1;
+    background: #30cd6fcc;
 }
