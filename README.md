@@ -46,6 +46,13 @@ The expected output of the sample file was:
    "Wyatt Earp Corral"
 ```
 
+This was calculated by 3 steps of logic.
+1. Go through all campsites and match them with their reservations
+2. Determine if the search reservation overlaps
+    a. If the startGap/endGap is a designated gapSize
+    b. If the startGap/endGap is negative and absolute value is not more than the duration of the search.
+3. Display campsites that have no overlap
+
 ## Authors
 
 * **Ty Smith** - *Initial work*
